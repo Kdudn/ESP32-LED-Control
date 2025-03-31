@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="refresh" content="0; url=https://housing-mess-neither-cr.trycloudflare.com">
-    <title>Redirecting...</title>
+    <title>Checking Website Status...</title>
+    <style>
+        #status {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            background-color: gray;
+        }
+    </style>
+    <script>
+        function checkStatus() {
+            fetch("https://housing-mess-neither-cr.trycloudflare.com", { mode: 'no-cors' })
+                .then(() => {
+                    document.getElementById("status").style.backgroundColor = "green";
+                    window.location.href = "https://housing-mess-neither-cr.trycloudflare.com";
+                })
+                .catch(() => {
+                    document.getElementById("status").style.backgroundColor = "red";
+                });
+        }
+        window.onload = checkStatus;
+    </script>
 </head>
 <body>
-    <p>If you are not redirected, <a href="https://housing-mess-neither-cr.trycloudflare.com">click here</a>.</p>
+    <p>If the website is online, you will be redirected. Otherwise, check back later or WA Andrew.</p>
+    <p>jika websitenya online, kamu akan diredirected. jika tidak, nanti cek kembali atau WA Andrew.</p>
+    <p>Website status: <span id="status"></span></p>
 </body>
 </html>
