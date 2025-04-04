@@ -12,22 +12,26 @@
         }
     </style>
     <script>
-        function checkStatus() {
-            fetch("https://third-medicines-dom-yorkshire.trycloudflare.com/", { mode: 'no-cors' })
-                .then(() => {
-                    document.getElementById("status").style.backgroundColor = "green";
-                    window.location.href = "https://third-medicines-dom-yorkshire.trycloudflare.com/";
-                })
-                .catch(() => {
-                    document.getElementById("status").style.backgroundColor = "red";
+        async function checkStatus() {
+            try {
+                const response = await fetch("https://third-medicines-dom-yorkshire.trycloudflare.com/", {
+                    method: "HEAD", // Only request headers to reduce load
+                    mode: "no-cors" // Avoid CORS issues
                 });
+
+                // Since `no-cors` mode doesn't allow reading response status, assume success if fetch does not throw an error
+                document.getElementById("status").style.backgroundColor = "green";
+                window.location.href = "https://third-medicines-dom-yorkshire.trycloudflare.com/";
+            } catch (error) {
+                document.getElementById("status").style.backgroundColor = "red";
+            }
         }
         window.onload = checkStatus;
     </script>
 </head>
 <body>
     <p>If the website is online, you will be redirected. Otherwise, check back later or WA Andrew.</p>
-    <p>jika websitenya online, kamu akan diredirected. jika tidak, nanti cek kembali atau WA Andrew.</p>
+    <p>Jika websitenya online, kamu akan diredirect. Jika tidak, nanti cek kembali atau WA Andrew.</p>
     <p>Website status: <span id="status"></span></p>
 </body>
 </html>
